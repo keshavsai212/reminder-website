@@ -6,8 +6,26 @@ const reminderDate = document.querySelector("#reminderDate");
 const reminderList = document.querySelector("#reminderList");
 const reminderName = document.querySelector("#reminderName");
 const reminderTime = document.querySelector("#reminderTime");
+const themeToggle = document.querySelector("#themeToggle");
+const themeToggleIcon = document.querySelector(".theme-toggle-icon");
 
 const reminders = [];
+const savedTheme = localStorage.getItem("reminderTheme");
+const preferredTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+  ? "dark"
+  : "light";
+
+function setTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  localStorage.setItem("reminderTheme", theme);
+  themeToggle.setAttribute(
+    "aria-label",
+    theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
+  );
+  themeToggleIcon.textContent = theme === "dark" ? "Light" : "Dark";
+}
+
+setTheme(savedTheme || preferredTheme);
 
 function setNotificationStatus(message, type = "") {
   notificationStatus.textContent = message;
@@ -102,7 +120,7 @@ function renderReminders() {
 
   reminders.forEach((reminder) => {
     const item = document.createElement("li");
-    item.className = "reminder-item";
+    item.className = `reminder-item ${reminder.isNew ? "is-new" : ""}`;
     item.innerHTML = `
       <div>
         <strong>${reminder.title}</strong>
@@ -110,6 +128,7 @@ function renderReminders() {
       </div>
     `;
     reminderList.appendChild(item);
+    reminder.isNew = false;
   });
 }
 
@@ -120,6 +139,7 @@ reminderForm.addEventListener("submit", async (event) => {
     title: reminderName.value.trim(),
     date: reminderDate.value,
     time: reminderTime.value,
+    isNew: true,
   };
 
   reminders.push(reminder);
@@ -132,6 +152,13 @@ reminderForm.addEventListener("submit", async (event) => {
   reminderForm.reset();
   reminderName.focus();
   renderReminders();
+});
+
+themeToggle.addEventListener("click", () => {
+  const nextTheme =
+    document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+
+  setTheme(nextTheme);
 });
 
 renderReminders();
