@@ -6,6 +6,7 @@ const reminderDate = document.querySelector("#reminderDate");
 const reminderList = document.querySelector("#reminderList");
 const reminderName = document.querySelector("#reminderName");
 const reminderTime = document.querySelector("#reminderTime");
+const refreshButton = document.querySelector("#refreshButton");
 const themeToggle = document.querySelector("#themeToggle");
 const themeToggleIcon = document.querySelector(".theme-toggle-icon");
 
@@ -159,6 +160,10 @@ themeToggle.addEventListener("click", () => {
     document.documentElement.dataset.theme === "dark" ? "light" : "dark";
 
   setTheme(nextTheme);
+});
+
+refreshButton.addEventListener("click", () => {
+  window.location.reload();
 });
 
 renderReminders();

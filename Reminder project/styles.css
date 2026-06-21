@@ -144,6 +144,34 @@ h1 {
   transform: translateY(-1px);
 }
 
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1;
+  transition: border-color 180ms var(--ease), box-shadow 180ms var(--ease),
+    transform 180ms var(--ease), background 180ms var(--ease);
+}
+
+.icon-button:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.icon-button:active {
+  transform: rotate(18deg) translateY(0);
+}
+
 .reminder-form {
   display: grid;
   grid-template-columns: minmax(180px, 1fr) minmax(150px, 0.6fr) minmax(
@@ -299,11 +327,13 @@ h1 {
 }
 
 [data-theme="dark"] .primary-button:hover,
-[data-theme="dark"] .theme-toggle:hover {
+[data-theme="dark"] .theme-toggle:hover,
+[data-theme="dark"] .icon-button:hover {
   box-shadow: 0 0 0 1px var(--neon), 0 0 30px var(--neon-soft);
 }
 
-[data-theme="dark"] .theme-toggle {
+[data-theme="dark"] .theme-toggle,
+[data-theme="dark"] .icon-button {
   background: var(--surface-strong);
   box-shadow: 0 0 0 1px rgba(52, 213, 255, 0.08);
 }
