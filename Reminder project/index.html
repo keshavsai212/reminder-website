@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reminderly</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="app-header">
+        <div>
+          <p class="eyebrow">Reminder Website</p>
+          <h1>Reminderly</h1>
+        </div>
+        <a class="primary-button" href="#reminderName">Add Reminder</a>
+      </header>
+
+      <form class="reminder-form" id="reminderForm">
+        <label>
+          Reminder name
+          <input
+            type="text"
+            id="reminderName"
+            name="reminderName"
+            placeholder="Doctor appointment"
+            required
+          />
+        </label>
+
+        <label>
+          Date
+          <input type="date" id="reminderDate" name="reminderDate" required />
+        </label>
+
+        <label>
+          Time
+          <input type="time" id="reminderTime" name="reminderTime" required />
+        </label>
+
+        <button class="primary-button" type="submit">Save Reminder</button>
+      </form>
+
+      <p class="notification-status" id="notificationStatus" role="status">
+        Notifications will be requested when you save a reminder.
+      </p>
+
+      <section class="reminder-panel" aria-labelledby="reminderListTitle">
+        <div class="panel-header">
+          <h2 id="reminderListTitle">Today</h2>
+          <span class="reminder-count" id="reminderCount">0 reminders</span>
+        </div>
+
+        <div class="empty-state" id="emptyState">
+          <h3>No reminders yet</h3>
+          <p>Add your first reminder to start organizing your day.</p>
+        </div>
+
+        <ul class="reminder-list" id="reminderList" aria-label="Reminder list"></ul>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
