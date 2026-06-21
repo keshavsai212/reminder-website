@@ -63,7 +63,7 @@ function scheduleNotification(reminder) {
 
   setTimeout(() => {
     if (Notification.permission === "granted") {
-      new Notification("Reminderly", {
+      new Notification("RemindFlow", {
         body: reminder.title,
       });
     }

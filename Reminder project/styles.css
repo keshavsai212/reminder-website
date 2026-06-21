@@ -93,9 +93,31 @@ p {
 }
 
 h1 {
+  position: relative;
+  display: inline-flex;
   margin-bottom: 0;
+  padding: 6px 10px;
   font-size: clamp(2rem, 6vw, 3.5rem);
   line-height: 1;
+  isolation: isolate;
+}
+
+.brand-name::before {
+  position: absolute;
+  inset: -6px -10px;
+  z-index: -1;
+  border-radius: 14px;
+  background: linear-gradient(
+    110deg,
+    rgba(47, 111, 237, 0.16),
+    rgba(20, 122, 69, 0.14),
+    rgba(255, 184, 77, 0.16),
+    rgba(47, 111, 237, 0.16)
+  );
+  background-size: 260% 260%;
+  content: "";
+  filter: blur(1px);
+  animation: brandColorFlow 8s var(--ease) infinite;
 }
 
 .primary-button {
@@ -326,6 +348,18 @@ h1 {
   animation: neonPulse 3.6s var(--ease) infinite;
 }
 
+[data-theme="dark"] .brand-name::before {
+  background: linear-gradient(
+    110deg,
+    rgba(52, 213, 255, 0.24),
+    rgba(114, 92, 255, 0.2),
+    rgba(84, 240, 167, 0.18),
+    rgba(52, 213, 255, 0.24)
+  );
+  background-size: 260% 260%;
+  box-shadow: 0 0 32px rgba(52, 213, 255, 0.16);
+}
+
 [data-theme="dark"] .primary-button:hover,
 [data-theme="dark"] .theme-toggle:hover,
 [data-theme="dark"] .icon-button:hover {
@@ -443,6 +477,17 @@ h1 {
   50% {
     box-shadow: 0 0 0 1px rgba(52, 213, 255, 0.3),
       0 0 34px rgba(52, 213, 255, 0.24);
+  }
+}
+
+@keyframes brandColorFlow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
   }
 }
 
